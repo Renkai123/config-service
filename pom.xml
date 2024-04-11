@@ -47,6 +47,48 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+
+                    <from>
+                        <image>registry.cn-hangzhou.aliyuncs.com/yunxisky/base:1.0.1</image>
+                    </from>
+                    <to>
+                        <image>${project.artifactId}</image>
+                        <tags>1.0.1</tags>
+<!--                        <tags>-->
+<!--                            <tag>${env.PROJECT}_${env.ENVIRONMENT}_${env.BUILD_NUMBER}</tag>-->
+<!--                            <tag>${env.PROJECT}_${env.ENVIRONMENT}_latest</tag>-->
+<!--                        </tags>-->
+                    </to>
+                    <!--容器相关的属性-->
+                    <container>
+<!--                        <jvmFlags>-->
+<!--                            <jvmFlag>-XX:MaxRAMPercentage=75.0</jvmFlag>-->
+<!--                            <jvmFlag>-XX:+IgnoreUnrecognizedVMOptions</jvmFlag>-->
+<!--                            <jvmFlag>-XX:+UseContainerSupport</jvmFlag>-->
+<!--                            <jvmFlag>-Xdump:heap:events=user,request=exclusive+compact+prepwalk,opts=PHD</jvmFlag>-->
+<!--                            <jvmFlag>-XX:+HeapDumpOnOutOfMemoryError</jvmFlag>-->
+<!--                            <jvmFlag>-XX:HeapDumpPath=/tmp</jvmFlag>-->
+<!--                        </jvmFlags>-->
+                        <ports>
+                            <port>8881</port>
+                        </ports>
+                    </container>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
